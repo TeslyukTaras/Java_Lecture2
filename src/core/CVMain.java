@@ -9,17 +9,14 @@ public class CVMain {
     public static void main(String[] args) {
         CVMain cvCreator = new CVMain();
         Person person = cvCreator.getPerson();
-        Education[] educations = cvCreator.getEducationHistory();
-        Work[] works = cvCreator.getWorkHistory();
-        Technology[] technologies = cvCreator.getTechnologyStack();
 
         ICVCreator cv = new CVCreator();
 //        ICVCreator cv = new CVCreatorReverse();
         StringBuilder builder = new StringBuilder();
         builder.append(cv.createHeader(person))
-                .append(cv.createWorkHistory(works))
-                .append(cv.createEducationHistory(educations))
-                .append(cv.createTechnologyStack(technologies));
+                .append(cv.createWorkHistory(person.getWorks()))
+                .append(cv.createEducationHistory(person.getEducations()))
+                .append(cv.createTechnologyStack(person.getTechnologies()));
 
         String result = builder.toString();
         System.out.println(result);
@@ -29,6 +26,9 @@ public class CVMain {
         Date birthday = new Date(1990, 4, 25);
         Location location = new Location("Ukraine", "Lviv region", "Lviv");
         Person person = new Person("Ivan", "Petrenko", 28, birthday, location);
+        person.setWorks(getWorkHistory());
+        person.setEducations(getEducationHistory());
+        person.setTechnologies(getTechnologyStack());
         return person;
     }
 

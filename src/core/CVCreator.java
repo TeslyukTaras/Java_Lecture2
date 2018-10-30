@@ -67,8 +67,6 @@ public class CVCreator implements ICVCreator {
                             }
                         }
                 }
-
-
             }
         }
         return builder.toString();
